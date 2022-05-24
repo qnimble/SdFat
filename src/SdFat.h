@@ -244,7 +244,7 @@ class SdBase : public Vol {
    *
    * \param[in] pr Print destination.
    */
-  void errorPrint(print_t* pr) {
+  void errorPrint(print_t* pr = &Serial) {
     if (sdErrorCode()) {
       pr->print(F("SdError: 0X"));
       pr->print(sdErrorCode(), HEX);
