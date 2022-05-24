@@ -57,7 +57,7 @@ class SdBase : public Vol {
    * \param[in] csPin SD card chip select pin.
    * \return true for success or false for failure.
    */
-  bool begin(SdCsPin_t csPin = SS) {
+  bool begin(SdCsPin_t csPin) {
 #ifdef BUILTIN_SDCARD
     if (csPin == BUILTIN_SDCARD) {
       return begin(SdioConfig(FIFO_SDIO));
@@ -98,6 +98,17 @@ class SdBase : public Vol {
     spiConfigBackupPin = 255;
     sdioConfigBackup = sdioConfig;
     return cardBegin(sdioConfig) && Vol::begin(m_card);
+  }
+  //---------------------------------------------------------------------------
+    /** Initialize SD card and file system for SDIO mode.
+     *
+     * \return true for success or false for failure.
+     */
+
+  bool begin(void) {
+    spiConfigBackupPin = 255;
+    sdioConfigBackup = SdioConfig();
+    return cardBegin(SdioConfig()) && Vol::begin(m_card);
   }
   //----------------------------------------------------------------------------
   /** Restart library with same config, used after media removed and replaced */
