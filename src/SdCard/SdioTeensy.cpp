@@ -36,7 +36,11 @@ const uint32_t MAX_BLKCNT = 0XFFFF;
 #define SDHC_PROCTL_DTW_4BIT 0x01
 const uint32_t FIFO_WML = 16;
 const uint32_t CMD8_RETRIES = 3;
+#ifdef ARDUINO_QUARTO
+const uint32_t BUSY_TIMEOUT_MICROS = 100000;
+#else
 const uint32_t BUSY_TIMEOUT_MICROS = 1000000;
+#endif
 //==============================================================================
 const uint32_t SDHC_IRQSTATEN_MASK =
                SDHC_IRQSTATEN_DMAESEN | SDHC_IRQSTATEN_AC12ESEN |
