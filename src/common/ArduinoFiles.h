@@ -42,6 +42,7 @@
 template<class BaseFile>
 class PrintFile : public print_t, public BaseFile {
  public:
+  using Print::write;
   using BaseFile::clearWriteError;
   using BaseFile::getWriteError;
   using BaseFile::read;
